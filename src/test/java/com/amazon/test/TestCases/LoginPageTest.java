@@ -3,11 +3,15 @@ package com.amazon.test.TestCases;
 import com.amazon.test.Page.HomePage;
 import com.amazon.test.Page.LoginPage;
 import com.amazon.test.base.BaseClass;
+import com.amazon.test.listener.ExtentTestListener;
+import com.amazon.test.listener.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners({TestListener.class, ExtentTestListener.class})
 public class LoginPageTest extends BaseClass {
 
     HomePage homePage;
@@ -62,6 +66,9 @@ public class LoginPageTest extends BaseClass {
         loginPage.login(properties.getProperty("username"), "");
         Assert.assertTrue(loginPage.getUrl().contains("signin"), "Only username test failed");
     }
+
+
+
 
 
 

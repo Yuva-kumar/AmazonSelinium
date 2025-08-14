@@ -28,6 +28,12 @@ public class HomePage extends BaseClass {
     @FindBy(xpath = "//input[@data-action-type='DISMISS' and contains(@data-action-params, '\"toasterType\":\"AIS_INGRESS\"')]")
     WebElement DismissButton;
 
+    @FindBy(id="nav-orders")
+    WebElement sellpage;
+
+    @FindBy(xpath = "//*[@id=\"icp-nav-flyout\"]/a/span")
+    WebElement lang;
+
 
 
 
@@ -77,9 +83,16 @@ public class HomePage extends BaseClass {
         Action.click(webDriver,DismissButton);
     }
 
+    public  void sellPage(){
+        log.info("click on the sell ");
+        Action.click(webDriver,sellpage);
 
+    }
 
-
+    public void lang(){
+        log.info("click on the select country");
+        Action.click(webDriver, lang);
+    }
 
 
 

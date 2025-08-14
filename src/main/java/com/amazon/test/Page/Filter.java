@@ -34,6 +34,19 @@ public class Filter extends BaseClass {
     @FindBy(xpath = "//a[@aria-label='Apply 4 Stars & Up filter to narrow results']")
     WebElement fourStars;
 
+    @FindBy(xpath = "//span[text()='AMOLED']")
+    WebElement amoledBox;
+
+    @FindBy(xpath = "//span[text()='OLED']")
+    WebElement oledBox;
+
+    @FindBy(xpath = "//span[normalize-space()='256 GB']")
+    WebElement mostStorage;
+
+    @FindBy(xpath = "//span[normalize-space()='128 GB']")
+    WebElement moreStorage;
+
+
 
 
     public  Filter() {
@@ -55,6 +68,33 @@ public class Filter extends BaseClass {
         }
     }
 
+    public void displayFilter(String display){
+        logger.info("applying a brand to be filter: {}",display);
+        if(display.equalsIgnoreCase("amoled")) {
+            Action.click(webDriver, amoledBox);
+            logger.info("samsung brand filter is applied");
+        } else if(display.equalsIgnoreCase("oled")){
+            Action.click(webDriver, oledBox);
+            logger.info("poco brand applied as a filter");
+        }else{
+            logger.warn("no filter is applied");
+        }
+    }
+
+    public void storageFilter(String storage){
+        logger.info("applying a brand to be filter: {}",storage);
+        if(storage.equalsIgnoreCase("256")) {
+            Action.click(webDriver, mostStorage);
+            logger.info("samsung brand filter is applied");
+        } else if(storage.equalsIgnoreCase("128")){
+            Action.click(webDriver, moreStorage);
+            logger.info("poco brand applied as a filter");
+        }else{
+            logger.warn("no filter is applied");
+        }
+    }
+
+
     public void priceFilter(String min, String max){
 
         minRange.clear();
@@ -68,6 +108,8 @@ public class Filter extends BaseClass {
         Action.click(webDriver,goBut);
         logger.info("price filter applied");
     }
+
+
 
     public void applyRatingFilter() {
         logger.info("Applying 4 Stars & Up rating filter.");

@@ -4,8 +4,9 @@ import com.amazon.test.Page.Filter;
 import com.amazon.test.Page.HomePage;
 import com.amazon.test.Page.Search;
 import com.amazon.test.base.BaseClass;
+import com.amazon.test.listener.ExtentTestListener;
+import com.amazon.test.listener.TestListener;
 import com.amazon.test.utility.ExtentManager;
-import junit.framework.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.net.http.WebSocket;
 
-
+@Listeners({TestListener.class, ExtentTestListener.class})
 public class FilterTest extends BaseClass {
     HomePage homePage;
     Search search;
@@ -46,6 +47,34 @@ public class FilterTest extends BaseClass {
         homePage.searchBar("smartphones");
         filter.brandFilter("apple");
         Assert.assertTrue(search.productDisplayed("apple"));
+    }
+
+    @Test
+    public void amoledFilter(){
+        homePage.searchBar("smartphones");
+        filter.displayFilter("amoled");
+        Assert.assertTrue(search.productDisplayed("amoled"));
+    }
+
+    @Test
+    public void oledFilter(){
+        homePage.searchBar("smartphones");
+        filter.displayFilter("oled");
+        Assert.assertTrue(search.productDisplayed("oled"));
+    }
+
+    @Test
+    public void mostStorageFilter(){
+        homePage.searchBar("smartphones");
+        filter.storageFilter("256");
+        Assert.assertTrue(search.productDisplayed("256"));
+    }
+
+    @Test
+    public void moreStorageFilter(){
+        homePage.searchBar("smartphones");
+        filter.storageFilter("128");
+        Assert.assertTrue(search.productDisplayed("128"));
     }
 
     @Test
